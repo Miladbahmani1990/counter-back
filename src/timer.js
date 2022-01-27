@@ -12,20 +12,30 @@ var interval;
         time: 10
       }
     }
-  
-    componentDidMount(){           //این تابع برای اولین بار اجرا میشود 
-  
-      interval =setInterval(() => {
-        this.setState({
-          time: this.state.time - 1
-        })
-      }, 1000); 
+
+    startclick = ()=>{
+        interval =setInterval(() => {
+            this.setState({
+              time: this.state.time - 1
+            })
+          }, 1000); 
+        }
     }
+
+    stopclick = ()=>{
+        clearInterval(interval);
+    }
+
+  
+    componentDidMount(){          //این تابع برای اولین بار اجرا میشود 
+  
+       this.startclick();
+    } 
   
   
-    componentDidUpdate(){                 //اجرا میشود و داخلش شرط گذاشتیم render   این تابع بعد از 
+    componentDidUpdate(){             //اجرا میشود و داخلش شرط گذاشتیم render   این تابع بعد از 
       if (this.state.time == 0){
-        clearInterval(interval)
+        this.stopclick();
       }
     }
   
@@ -33,9 +43,13 @@ var interval;
      
   
       return(
+        <>
         <h3>
-            it is {this.state.time}
+            it is {this.state.time}  
         </h3>
+        <button onClick={this.stop}>stop</button>
+        <button onClick={this.start}>start</button>
+        </>
       )
     }
   }
