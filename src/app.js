@@ -27,7 +27,7 @@ class App1 extends React.Component{
   
           
           <Word1 title={this.state.title}/>
-          <Timer1 stop={this.stop}/>
+          <Timer1/>
           
     
         </div>
